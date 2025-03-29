@@ -1,0 +1,26 @@
+{
+    "api": {
+        "unsplash_access_key": "你的Unsplash访问密钥",
+        "pexels_api_key": "你的Pexels API密钥",
+        "pixabay_api_key": "你的Pixabay API密钥",
+        "together_api_key": "你的Together API密钥",
+        "timeout": 30,
+        "max_retries": 3,
+        "retry_delay": 5
+    },
+    "image": {
+        "max_results": 20,
+        "default_width": 512,
+        "default_height": 512
+    },
+    "output": {
+        "base_folder": "icons",
+        "allowed_extensions": [".png", ".jpg", ".jpeg", ".svg"],
+        "default_extension": ".png"
+    },
+    "server": {
+        "host": "0.0.0.0",
+        "port": 5173,
+        "name": "图片搜索服务"
+    }
+} 
