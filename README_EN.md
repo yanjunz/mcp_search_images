@@ -182,10 +182,16 @@ PORT=5174 fastmcp dev mcp_search_images.py
 
 ### Method 3: Using UV
 
-If you use UV as your package manager:
+If you use UV as your package manager, you can run the service in the following ways:
 
+1. Run from the project directory:
 ```bash
 uv run --with fastmcp fastmcp run mcp_search_images.py
+```
+
+2. Run from any directory using the full path:
+```bash
+uv run --with fastmcp fastmcp run /PathToMCPSearchImages/mcp_search_images.py
 ```
 
 Or in development mode:
