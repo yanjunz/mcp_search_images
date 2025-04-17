@@ -57,11 +57,17 @@ def search_images(query: str, source: str = "unsplash", max_results: int = 10) -
     Args:
         query: 图片搜索关键词
         source: 图片来源 (unsplash, pexels, pixabay)
-        max_results: 最大返回结果数量
+        max_results: 最大返回结果数量，必须是整数
         
     Returns:
         str: 包含搜索结果的JSON字符串
     """
+    # 确保max_results是整数
+    try:
+        max_results = int(max_results)
+    except (TypeError, ValueError):
+        return json.dumps({"error": "max_results必须是整数"})
+        
     results = []
     
     if max_results > CONFIG["image"]["max_results"]:
