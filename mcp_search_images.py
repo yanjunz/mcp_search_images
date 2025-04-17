@@ -168,6 +168,10 @@ def download_image(url: str, file_name: str, save_folder: str = None) -> str:
         # 验证并设置保存路径
         if save_folder is None:
             save_folder = CONFIG["output"]["base_folder"]
+        else:
+            # 如果save_folder是相对路径，转换为绝对路径
+            if not os.path.isabs(save_folder):
+                save_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), save_folder)
         
         # 确保目录存在
         os.makedirs(save_folder, exist_ok=True)
