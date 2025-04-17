@@ -51,13 +51,13 @@ os.makedirs(CONFIG["output"]["base_folder"], exist_ok=True)
 app = FastMCP(name=CONFIG["server"]["name"])
 
 @app.tool()
-def search_images(query: str, source: str = "unsplash", max_results: int = 10) -> str:
+def search_images(query: str, source: str = "unsplash", max_results: str = "10") -> str:
     """搜索图片
     
     Args:
         query: 图片搜索关键词
         source: 图片来源 (unsplash, pexels, pixabay)
-        max_results: 最大返回结果数量，必须是整数
+        max_results: 最大返回结果数量，可以是字符串形式的数字
         
     Returns:
         str: 包含搜索结果的JSON字符串
@@ -66,7 +66,7 @@ def search_images(query: str, source: str = "unsplash", max_results: int = 10) -
     try:
         max_results = int(max_results)
     except (TypeError, ValueError):
-        return json.dumps({"error": "max_results必须是整数"})
+        return json.dumps({"error": "max_results必须是数字"})
         
     results = []
     
@@ -159,7 +159,7 @@ def download_image(url: str, file_name: str, save_folder: str = None) -> str:
     Args:
         url: 图片URL
         file_name: 保存的文件名
-        save_folder: 保存目录路径
+        save_folder: 保存目录路径（必须是绝对路径，例如：/Users/username/projects/mcp_search_images/icons）
         
     Returns:
         str: 包含下载结果的JSON字符串
@@ -217,7 +217,7 @@ def generate_icon(prompt: str, file_name: str, save_folder: str = None, width: i
     Args:
         prompt: 图标生成提示词
         file_name: 保存的文件名
-        save_folder: 保存目录路径
+        save_folder: 保存目录路径（必须是绝对路径，例如：/Users/username/projects/mcp_search_images/icons）
         width: 生成图标的宽度(可选)
         height: 生成图标的高度(可选)
         
