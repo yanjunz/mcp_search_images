@@ -145,7 +145,7 @@ In `config.json`, modify the following configuration:
 This is the simplest way to run the service directly with Python:
 
 ```bash
-python3.11 mcp_search_images.py
+python3.11 main.py
 ```
 
 The service will display the following information after starting:
@@ -165,19 +165,19 @@ If you've installed the fastmcp package, you can also run it with:
 1. Run in development mode (with debug interface):
 
 ```bash
-fastmcp dev mcp_search_images.py
+fastmcp dev main.py
 ```
 
 2. Run in production mode:
 
 ```bash
-fastmcp run mcp_search_images.py
+fastmcp run main.py
 ```
 
 3. If the port is occupied, specify another port:
 
 ```bash
-PORT=5174 fastmcp dev mcp_search_images.py
+PORT=5174 fastmcp dev main.py
 ```
 
 ### Method 3: Using UV
@@ -186,18 +186,18 @@ If you use UV as your package manager, you can run the service in the following 
 
 1. Run from the project directory:
 ```bash
-uv run --with fastmcp fastmcp run mcp_search_images.py
+uv run --with fastmcp fastmcp run main.py
 ```
 
 2. Run from any directory using the full path:
 ```bash
-uv run --with fastmcp fastmcp run /PathToMCPSearchImages/mcp_search_images.py
+uv run --with fastmcp fastmcp run /PathToMCPSearchImages/main.py
 ```
 
 Or in development mode:
 
 ```bash
-uv run --with fastmcp fastmcp dev mcp_search_images.py
+uv run --with fastmcp fastmcp dev main.py
 ```
 
 ### How Cursor and MCP Work Together
@@ -205,7 +205,7 @@ uv run --with fastmcp fastmcp dev mcp_search_images.py
 To better understand and troubleshoot connection issues, here's how Cursor interacts with the MCP service:
 
 1. **MCP Service Startup Process**:
-   * When running `python3.11 mcp_search_images.py`, the service initializes and creates an SSE (Server-Sent Events) application
+   * When running `python3.11 main.py`, the service initializes and creates an SSE (Server-Sent Events) application
    * Service starts listening on the specified port (default 5173)
    * Service registers tool functions (search_images, download_image, generate_icon)
    * For ServerLink connections, the service needs to correctly handle SSE requests on the `/sse` path
@@ -225,10 +225,10 @@ To better understand and troubleshoot connection issues, here's how Cursor inter
 4. **Complete Testing Process**:
    ```bash
    # 1. Stop any potentially running services
-   pkill -f "python.*mcp_search_images.py"
+   pkill -f "python.*main.py"
    
    # 2. Start the service (run in foreground to see logs)
-   python3.11 mcp_search_images.py
+   python3.11 main.py
    
    # 3. In a new terminal window, test the connection
    curl http://localhost:5173
@@ -253,7 +253,7 @@ python3.11 -m pip install fastmcp mcp uvicorn starlette
 1. Ensure the service is running
    ```bash
    # Run the Python script directly
-   python3.11 mcp_search_images.py
+   python3.11 main.py
    ```
    The service will display the following information after startup:
    ```
@@ -381,7 +381,7 @@ If you encounter a "Fail to create client" error when adding the MCP service in 
    # Check if the service is running
    lsof -i :5173
    # If no output, the service is not running, start it
-   python3.11 mcp_search_images.py
+   python3.11 main.py
    ```
 
 2. **Test Connection**:

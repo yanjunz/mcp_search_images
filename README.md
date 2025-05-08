@@ -145,7 +145,7 @@ nano config.json  # 或使用其他编辑器
 这是最简单的方式，直接使用Python运行服务：
 
 ```bash
-python3.11 mcp_search_images.py
+python3.11 main.py
 ```
 
 服务启动后会显示以下信息:
@@ -165,19 +165,19 @@ INFO:     Uvicorn running on http://0.0.0.0:5173 (Press CTRL+C to quit)
 1. 开发模式运行（带调试界面）：
 
 ```bash
-fastmcp dev mcp_search_images.py
+fastmcp dev main.py
 ```
 
 2. 生产模式运行：
 
 ```bash
-fastmcp run mcp_search_images.py
+fastmcp run main.py
 ```
 
 3. 如果端口被占用，可以指定其他端口：
 
 ```bash
-PORT=5174 fastmcp dev mcp_search_images.py
+PORT=5174 fastmcp dev main.py
 ```
 
 ### 方法三：使用uv运行
@@ -185,13 +185,13 @@ PORT=5174 fastmcp dev mcp_search_images.py
 如果您使用uv作为包管理器：
 
 ```bash
-uv run --with fastmcp fastmcp run mcp_search_images.py
+uv run --with fastmcp fastmcp run main.py
 ```
 
 或者在开发模式下：
 
 ```bash
-uv run --with fastmcp fastmcp dev mcp_search_images.py
+uv run --with fastmcp fastmcp dev main.py
 ```
 
 ### Cursor与MCP的工作原理
@@ -199,7 +199,7 @@ uv run --with fastmcp fastmcp dev mcp_search_images.py
 为了更好地理解和解决连接问题，以下是Cursor与MCP服务交互的基本工作原理：
 
 1. **MCP服务启动流程**：
-   * 当运行`python3.11 mcp_search_images.py`时，服务初始化并创建SSE（Server-Sent Events）应用
+   * 当运行`python3.11 main.py`时，服务初始化并创建SSE（Server-Sent Events）应用
    * 服务在指定端口（默认5173）开始监听请求
    * 服务注册工具函数（search_images, download_image, generate_icon）
    * 对于使用ServerLink方式的连接，服务需要在`/sse`路径上正确处理SSE请求
@@ -219,10 +219,10 @@ uv run --with fastmcp fastmcp dev mcp_search_images.py
 4. **完整的测试流程**：
    ```bash
    # 1. 停止任何可能正在运行的服务
-   pkill -f "python.*mcp_search_images.py"
+   pkill -f "python.*main.py"
    
    # 2. 启动服务（在前台运行以查看日志）
-   python3.11 mcp_search_images.py
+   python3.11 main.py
    
    # 3. 在新的终端窗口中，测试连接
    curl http://localhost:5173
@@ -247,7 +247,7 @@ python3.11 -m pip install fastmcp mcp uvicorn starlette
 1. 确保服务正在运行
    ```bash
    # 直接运行Python脚本
-   python3.11 mcp_search_images.py
+   python3.11 main.py
    ```
    服务启动后会显示以下信息:
    ```
@@ -375,7 +375,7 @@ python3.11 -m pip install fastmcp mcp uvicorn starlette
    # 检查服务是否正在运行
    lsof -i :5173
    # 如果没有输出，表示服务未运行，请启动服务
-   python3.11 mcp_search_images.py
+   python3.11 main.py
    ```
 
 2. **测试连接**：
