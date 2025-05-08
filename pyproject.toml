@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp_search_images"
+version = "0.1.0"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+description = "A project for searching images in MCP"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=0.10.0",
+    "requests>=2.28.1",
+]
+
+[project.urls]
+"Homepage" = "https://example.com"
+"Bug Tracker" = "https://example.com/issues"
